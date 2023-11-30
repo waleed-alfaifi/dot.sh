@@ -9,6 +9,8 @@
 
   --color-background: white;
   --color-foreground: black;
+
+  --color-primary: rgb(250 204 21); /* #facc15 - tailwind yellow-400 color */
 }
 
 .dark {

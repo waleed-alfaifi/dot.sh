@@ -6,13 +6,7 @@ import { faTerminal } from '@fortawesome/free-solid-svg-icons/faTerminal'
 export default function Home() {
   return (
     <div>
-      <Image
-        src={hero}
-        alt="Man writing code"
-        width={180}
-        height={180}
-        className="mb-8"
-      />
+      <Image src={hero} alt="Man writing code" width={180} className="mb-8" />
       <h1 className="text-lg mb-4">
         <FontAwesomeIcon
           icon={faTerminal}

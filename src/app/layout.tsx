@@ -4,8 +4,7 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import clsx from 'clsx'
 import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
-import Link from 'next/link'
-import { ThemeToggler } from './_components/Theme'
+import Header from './_components/Header'
 
 config.autoAddCss = false
 
@@ -22,29 +21,6 @@ export const metadata: Metadata = {
   description: 'Personal website of Waleed',
 }
 
-function Header() {
-  return (
-    <header className="pt-4 pb-2 border-b-gray-600 border-b">
-      <nav>
-        <ul className="flex justify-between gap-3">
-          <li>
-            <Link href="/">./waleed.sh</Link>
-          </li>
-          <li>
-            <Link href="/blog">Blog</Link>
-          </li>
-          <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
-            <ThemeToggler />
-          </li>
-        </ul>
-      </nav>
-    </header>
-  )
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -54,7 +30,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body
         className={clsx(
-          'px-5 text-gray-300 text-sm leading-6',
+          'px-5 pt-4 text-gray-300 leading-6 max-w-3xl mx-auto md:text-base',
           inter.className
         )}
       >
