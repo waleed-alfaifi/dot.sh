@@ -18,9 +18,12 @@ interface Post {
   html: string
 }
 
-const POSTS_DIR_NAME = 'public/content/posts'
+const POSTS_DIR_NAME = 'public/blog'
 
-export const getParser = () => {
+const getImageURL = (fileName: string, url: string) => `
+  ${POSTS_DIR_NAME.replace('public', '')}/${fileName}/${url}`
+
+export const getParser = (postDirName: string) => {
   const parser = unified()
     // Convert to markdown AST
     .use(remarkParse)
@@ -42,11 +45,13 @@ export const getParser = () => {
           }
         },
         image(_, node) {
+          const imgURL = getImageURL(postDirName, node.url)
+
           return {
             type: 'element',
             tagName: 'img',
             properties: {
-              src: node.url,
+              src: imgURL,
               alt: node.alt,
               width: 500,
               height: 500,
@@ -69,36 +74,40 @@ export const getParser = () => {
 }
 
 /**
- * Reads from the `posts` directory
+ * Reads from the `blog` directory
  */
-export async function getPostByFileName(fileName: string): Promise<Post> {
-  const [segment1, segment2] = fileName.split('--')
+export async function getPost(dirName: string): Promise<Post> {
+  const [segment1, segment2] = dirName.split('--')
   let date = segment1
   let id = segment2
 
-  // only id was provided, no date
-  // find file name and get date out of it
+  // when user visits a post, id will be the post id without the date prefix
+  // we need to add the date prefix back by finding the dir name
   if (!id) {
     id = segment1
 
-    // read directory and get file that contains id
-    const files = await fs.promises.readdir(POSTS_DIR_NAME)
-    const file = files.find((file) => file.includes(id))
+    // read blog directory and get the post directory that contains id
+    const dirs = await fs.promises.readdir(POSTS_DIR_NAME)
+    const dir = dirs.find((file) => file.includes(id))
 
-    if (!file) {
-      throw new Error(`No file found for id: ${id}`)
+    if (!dir) {
+      throw new Error(`No directory found for id: ${id}`)
     }
 
-    date = file.split('--')[0]
-    fileName = file
+    // get date from directory name
+    date = dir.split('--')[0]
+    dirName = dir
   }
 
-  const fullPath = join(POSTS_DIR_NAME, fileName)
-  const { data, content } = matter(await fs.promises.readFile(fullPath, 'utf8'))
+  const fullPath = join(POSTS_DIR_NAME, dirName)
+  const markdownFile = fullPath + '/index.md'
+  const { data, content } = matter(
+    await fs.promises.readFile(markdownFile, 'utf8')
+  )
   const { title, excerpt } = data
 
   // get html
-  const parser = getParser()
+  const parser = getParser(dirName)
   const vFile = await parser.process(content)
   const html = vFile.toString()
 
@@ -112,12 +121,10 @@ export async function getPostByFileName(fileName: string): Promise<Post> {
 }
 
 export async function getAllPosts(): Promise<Post[]> {
-  const files = await fs.promises.readdir(POSTS_DIR_NAME)
-  const all = files
-    .filter((f) => f.includes('.md'))
-    .map((id) => getPostByFileName(id))
-
+  const dirs = await fs.promises.readdir(POSTS_DIR_NAME)
+  const all = dirs.map((id) => getPost(id))
   const posts = await Promise.all(all)
+
   return posts.sort((p1, p2) =>
     compareDesc(new Date(p1.date), new Date(p2.date))
   )

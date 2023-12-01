@@ -1,7 +1,7 @@
 import './blog.scss'
 import type { Metadata } from 'next'
 import { Heading } from '@/common/components/Heading'
-import { getAllPosts, getPostByFileName } from '@/lib/api'
+import { getAllPosts, getPost } from '@/lib/api'
 
 interface PageProps {
   params: {
@@ -12,7 +12,7 @@ interface PageProps {
 export async function generateMetadata({
   params: { postId },
 }: PageProps): Promise<Metadata> {
-  const post = await getPostByFileName(postId)
+  const post = await getPost(postId)
 
   return {
     title: post.title,
@@ -20,7 +20,9 @@ export async function generateMetadata({
   }
 }
 
-export async function generateStaticParams() {
+export const dynamicParams = false
+
+export async function generateStaticParams(): Promise<PageProps['params'][]> {
   const posts = await getAllPosts()
   const ids = posts.map((post) => post.id)
 
@@ -30,7 +32,7 @@ export async function generateStaticParams() {
 }
 
 const PostPage = async ({ params: { postId } }: PageProps) => {
-  const post = await getPostByFileName(postId)
+  const post = await getPost(postId)
 
   return (
     <article className="space-y-3">
