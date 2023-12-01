@@ -1,7 +1,7 @@
 import './blog.scss'
 import type { Metadata } from 'next'
 import { Heading } from '@/common/components/Heading'
-import { getPostByFileName } from '@/lib/api'
+import { getAllPosts, getPostByFileName } from '@/lib/api'
 
 interface PageProps {
   params: {
@@ -18,6 +18,11 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
   }
+}
+
+export async function generateStaticParams(): Promise<string[]> {
+  const posts = await getAllPosts()
+  return posts.map((post) => post.id)
 }
 
 const PostPage = async ({ params: { postId } }: PageProps) => {
