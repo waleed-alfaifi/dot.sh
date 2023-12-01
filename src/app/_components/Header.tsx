@@ -9,9 +9,9 @@ function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="pt-4 pb-2 border-b-gray-600 border-b">
+    <header className="pt-3 pb-2 border-b-gray-600 border-b">
       <nav>
-        <ul className="flex justify-between gap-5">
+        <ul className="flex justify-between items-center gap-5">
           <li className="mr-auto">
             <Link href="/">./waleed.sh</Link>
           </li>
@@ -26,7 +26,7 @@ function Header() {
               Blog
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="/about"
               className={clsx({
@@ -36,7 +36,7 @@ function Header() {
             >
               About
             </Link>
-          </li>
+          </li> */}
           <li>
             <ThemeToggler />
           </li>
