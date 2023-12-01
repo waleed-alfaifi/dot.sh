@@ -18,14 +18,12 @@ interface Post {
   html: string
 }
 
-const POSTS_DIR_NAME = 'content/posts'
+const POSTS_DIR_NAME = 'public/content/posts'
 
 export const getParser = () => {
   const parser = unified()
     // Convert to markdown AST
-    .use(remarkParse, {
-      commonmark: true,
-    })
+    .use(remarkParse)
     // Add support for Github Flavored Markdown
     .use(remarkGfm)
     // Covert to HTML AST
