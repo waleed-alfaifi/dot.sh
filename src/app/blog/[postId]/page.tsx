@@ -20,9 +20,13 @@ export async function generateMetadata({
   }
 }
 
-export async function generateStaticParams(): Promise<string[]> {
+export async function generateStaticParams() {
   const posts = await getAllPosts()
-  return posts.map((post) => post.id)
+  const ids = posts.map((post) => post.id)
+
+  return ids.map((id) => ({
+    postId: id,
+  }))
 }
 
 const PostPage = async ({ params: { postId } }: PageProps) => {
