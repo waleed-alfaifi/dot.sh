@@ -16,6 +16,7 @@ interface Post {
   date: string
   excerpt: string
   html: string
+  unpublished?: boolean
 }
 
 const POSTS_DIR_NAME = 'public/blog'
@@ -104,7 +105,7 @@ export async function getPost(dirName: string): Promise<Post> {
   const { data, content } = matter(
     await fs.promises.readFile(markdownFile, 'utf8')
   )
-  const { title, excerpt } = data
+  const { title, excerpt, unpublished } = data
 
   // get html
   const parser = getParser(dirName)
@@ -117,6 +118,7 @@ export async function getPost(dirName: string): Promise<Post> {
     date,
     excerpt,
     html,
+    unpublished,
   }
 }
 
@@ -125,7 +127,7 @@ export async function getAllPosts(): Promise<Post[]> {
   const all = dirs.map((id) => getPost(id))
   const posts = await Promise.all(all)
 
-  return posts.sort((p1, p2) =>
-    compareDesc(new Date(p1.date), new Date(p2.date))
-  )
+  return posts
+    .filter((post) => !post.unpublished)
+    .sort((p1, p2) => compareDesc(new Date(p1.date), new Date(p2.date)))
 }

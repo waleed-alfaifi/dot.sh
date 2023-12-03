@@ -4,6 +4,7 @@ import { Heading } from '@/common/components/Heading'
 import { getAllPosts, getPost } from '@/lib/api'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTerminal } from '@fortawesome/free-solid-svg-icons'
+import WordsCounter from '@/app/WordsCounter'
 
 interface PageProps {
   params: {
@@ -80,6 +81,8 @@ const PostPage = async ({ params: { postId } }: PageProps) => {
           waleed-alfaifi
         </a>
       </aside>
+
+      <WordsCounter content={post.html} />
     </article>
   )
 }

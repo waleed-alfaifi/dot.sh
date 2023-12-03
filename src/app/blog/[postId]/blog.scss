@@ -39,7 +39,7 @@
   }
 
   pre {
-    @apply px-4 py-3 overflow-auto;
+    @apply px-4 py-3 overflow-auto rounded;
   }
 
   img {
@@ -48,5 +48,21 @@
 
   code {
     @apply text-sm;
+  }
+
+  ul {
+    @apply list-disc list-inside;
+  }
+
+  ol {
+    @apply list-decimal list-inside;
+  }
+
+  li {
+    @apply mb-0.5 pl-2;
+  }
+
+  blockquote {
+    @apply border-l-4 border-primary pl-2;
   }
 }

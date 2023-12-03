@@ -19,8 +19,6 @@ export default function Home() {
         Hello there! My name is Waleed.
       </h1>
 
-      <p></p>
-
       <p>
         You can check out my{' '}
         <Link href="/blog" className="text-primary">

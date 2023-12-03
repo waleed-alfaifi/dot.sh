@@ -24,13 +24,13 @@ const Blog = async () => {
         think are worth sharing.
       </p>
 
-      <ul className="flex flex-col gap-4 max-w-lg">
+      <ul className="flex flex-col gap-4 max-w-2xl">
         {posts.map((post) => {
           return (
             <li key={post.id}>
               <Link
                 href={`/blog/${post.id}`}
-                className="flex flex-col border border-gray-200 dark:border-gray-700 p-2 rounded-md md:p-4"
+                className="flex flex-col border border-gray-200 dark:border-gray-700 p-4 rounded-md md:p-4"
               >
                 <Heading level={3} className="text-primary">
                   {post.title}
