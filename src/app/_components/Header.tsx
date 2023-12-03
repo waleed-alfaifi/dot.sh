@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ThemeToggler } from './Theme'
+import { ThemeToggler } from './ThemeToggler'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 
@@ -9,7 +9,7 @@ function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="pt-3 pb-2 border-b-gray-600 border-b">
+    <header className="pt-3 pb-2 border-b-gray-200 dark:border-b-gray-600 border-b">
       <nav>
         <ul className="flex justify-between items-center gap-5">
           <li className="mr-auto">

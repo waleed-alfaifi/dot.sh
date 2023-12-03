@@ -8,24 +8,27 @@
   --background-end-rgb: 255, 255, 255;
 
   --color-background: white;
-  --color-foreground: black;
+  --color-foreground: rgb(90, 95, 122);
 
-  --color-primary: rgb(250 204 21); /* #facc15 - tailwind yellow-400 color */
+  --color-primary: rgb(59 130 246); /* #3b82f6 - tailwind blue-500 */
+  /* tailwind blue-700 color */
+  --color-primary-darker: rgb(37 99 235);
 }
 
 .dark {
   --color-background: rgba(27, 30, 46);
-  --color-foreground: rgb(225, 227, 237);
-}
+  --color-foreground: rgb(
+    209,
+    213,
+    219
+  ); /* #d1d5db - tailwind gray-300 color */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --color-primary: rgb(250 204 21); /* #facc15 - tailwind yellow-400 color */
+  /* tailwind yellow-500 color */
+  --color-primary-darker: rgb(245 158 11);
 }
 
 body {
   background: var(--color-background);
+  color: var(--color-foreground);
 }

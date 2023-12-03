@@ -30,12 +30,14 @@ const Blog = async () => {
             <li key={post.id}>
               <Link
                 href={`/blog/${post.id}`}
-                className="flex flex-col border border-gray-700 p-2 rounded-md md:p-4"
+                className="flex flex-col border border-gray-200 dark:border-gray-700 p-2 rounded-md md:p-4"
               >
-                <span className="text-primary">{post.title}</span>
+                <Heading level={3} className="text-primary">
+                  {post.title}
+                </Heading>
                 <p className="leading-5 my-1 text-sm">{post.excerpt}</p>
 
-                <p className="text-sm text-gray-400 ml-auto mt-2 italic">
+                <p className="text-sm text-gray-600 dark:text-gray-400 ml-auto mt-2 italic">
                   {new Date(post.date).toLocaleDateString('en', {
                     month: 'short',
                     day: 'numeric',

@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 import Header from './_components/Header'
+import { ThemeProvider } from './_components/ThemeProvider'
 
 config.autoAddCss = false
 
@@ -27,15 +28,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={clsx(
-          'px-5 pt-4 text-gray-300 leading-6 max-w-3xl mx-auto md:text-base',
+          'px-5 pt-4 leading-6 max-w-3xl mx-auto md:text-base',
           inter.className
         )}
       >
-        <Header />
-        <main className="py-6">{children}</main>
+        <ThemeProvider attribute="class">
+          <Header />
+          <main className="py-6">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   )

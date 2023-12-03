@@ -18,6 +18,7 @@ const config: Config = {
       colors: {
         foreground: 'var(--color-foreground)',
         primary: 'var(--color-primary)',
+        'primary-darker': 'var(--color-primary-darker)',
       },
       backgroundColor: {
         background: 'var(--color-background)',

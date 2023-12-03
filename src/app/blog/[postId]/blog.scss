@@ -35,7 +35,7 @@
   }
 
   a {
-    @apply text-primary hover:underline hover:text-yellow-500;
+    @apply text-primary hover:underline hover:text-inherit hover:dark:text-primary-darker;
   }
 
   pre {
