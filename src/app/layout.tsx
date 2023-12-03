@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import { Noto_Sans } from 'next/font/google'
 import Header from './_components/Header'
 import { ThemeProvider } from './_components/ThemeProvider'
+import AutoRefresh from './AutoRefresh'
 
 config.autoAddCss = false
 
@@ -28,18 +29,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={clsx(
-          'px-5 pt-4 leading-6 max-w-3xl mx-auto md:text-base',
-          inter.className
-        )}
-      >
-        <ThemeProvider attribute="class">
-          <Header />
-          <main className="py-6">{children}</main>
-        </ThemeProvider>
-      </body>
-    </html>
+    <AutoRefresh>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={clsx(
+            'px-5 pt-4 leading-6 max-w-3xl mx-auto md:text-base',
+            inter.className
+          )}
+        >
+          <ThemeProvider attribute="class">
+            <Header />
+            <main className="py-6">{children}</main>
+          </ThemeProvider>
+        </body>
+      </html>
+    </AutoRefresh>
   )
 }

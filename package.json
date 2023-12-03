@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 8000",
+    "dev": "run-p next-dev watch-content",
+    "next-dev": "next dev --port 8000",
     "build": "next build",
     "start": "next start --port 8000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "watch-content": "node ./watcher.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
@@ -37,10 +39,13 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
+    "chokidar": "^3.5.3",
     "eslint": "^8",
     "eslint-config-next": "13.5.6",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8",
     "tailwindcss": "^3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "ws": "^8.14.2"
   }
 }
