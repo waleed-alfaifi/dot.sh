@@ -1,4 +1,5 @@
 ---
-Title: React Server Components
+title: React Server Components
+excerpt: React Server Components
 unpublished: true
 ---

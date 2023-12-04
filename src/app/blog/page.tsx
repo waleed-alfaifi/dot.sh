@@ -8,6 +8,9 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Blog posts by Waleed',
+  alternates: {
+    canonical: '/blog',
+  },
 }
 
 const Blog = async () => {

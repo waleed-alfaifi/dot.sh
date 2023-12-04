@@ -3,6 +3,20 @@ import hero from './_static/hero.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTerminal } from '@fortawesome/free-solid-svg-icons/faTerminal'
 import Link from 'next/link'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  openGraph: {
+    images: ['/logo.png'],
+  },
+  alternates: {
+    canonical: '/',
+    types: {
+      'application/atom+xml': '/atom.xml',
+      'application/rss+xml': '/rss.xml',
+    },
+  },
+}
 
 export default function Home() {
   return (

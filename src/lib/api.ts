@@ -10,7 +10,7 @@ import rehypeStringify from 'rehype-stringify'
 import rehypePrettyCode from 'rehype-pretty-code'
 import matter from 'gray-matter'
 
-interface Post {
+export interface Post {
   id: string
   title: string
   date: string
@@ -122,12 +122,14 @@ export async function getPost(dirName: string): Promise<Post> {
   }
 }
 
+const includeUnpublishedPostsInDevEnv = process.env.NODE_ENV === 'development'
+
 export async function getAllPosts(): Promise<Post[]> {
   const dirs = await fs.promises.readdir(POSTS_DIR_NAME)
   const all = dirs.map((id) => getPost(id))
   const posts = await Promise.all(all)
 
   return posts
-    .filter((post) => !post.unpublished)
+    .filter((post) => !post.unpublished || includeUnpublishedPostsInDevEnv)
     .sort((p1, p2) => compareDesc(new Date(p1.date), new Date(p2.date)))
 }

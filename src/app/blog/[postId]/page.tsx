@@ -2,8 +2,9 @@ import './blog.scss'
 import type { Metadata } from 'next'
 import { Heading } from '@/common/components/Heading'
 import { getAllPosts, getPost } from '@/lib/api'
+import { name } from '@/lib/meta'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTerminal } from '@fortawesome/free-solid-svg-icons'
+import { faTerminal } from '@fortawesome/free-solid-svg-icons/faTerminal'
 import WordsCounter from '@/app/WordsCounter'
 
 interface PageProps {
@@ -20,6 +21,20 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    openGraph: {
+      type: 'article',
+      publishedTime: post.date,
+      title: post.title,
+    },
+    alternates: {
+      canonical: `/blog/${postId}`,
+    },
+    authors: [
+      {
+        name,
+        url: 'https://github.com/waleed-alfaifi',
+      },
+    ],
   }
 }
 

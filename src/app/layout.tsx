@@ -7,6 +7,7 @@ import { Noto_Sans } from 'next/font/google'
 import Header from './_components/Header'
 import { ThemeProvider } from './_components/ThemeProvider'
 import AutoRefresh from './AutoRefresh'
+import { description, siteUrl } from '@/lib/meta'
 
 config.autoAddCss = false
 
@@ -16,11 +17,12 @@ const inter = Noto_Sans({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: 'waleed.sh',
     template: '%s - waleed.sh',
   },
-  description: 'Personal website of Waleed',
+  description,
 }
 
 export default function RootLayout({
