@@ -30,7 +30,7 @@ const Blog = async () => {
       <ul className="flex flex-col gap-4 max-w-2xl">
         {posts.map((post) => {
           return (
-            <li key={post.id}>
+            <li key={post.id} className="relative">
               <Link
                 href={`/blog/${post.id}`}
                 className="flex flex-col border border-gray-200 dark:border-gray-700 p-4 rounded-md md:p-4"
@@ -47,6 +47,12 @@ const Blog = async () => {
                     year: 'numeric',
                   })}
                 </p>
+
+                {post.unpublished && (
+                  <div className="absolute bottom-3 left-4 mr-auto text-xs bg-orange-300 px-3 py-1.5 rounded text-gray-800">
+                    Unpublished
+                  </div>
+                )}
               </Link>
             </li>
           )
