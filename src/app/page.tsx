@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
     types: {
-      'application/atom+xml': '/atom.xml',
+      // 'application/atom+xml': '/atom.xml',
       'application/rss+xml': '/rss.xml',
     },
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex flex-col gap-4 [&_a]:text-primary">
       <Image
         src={hero}
         alt="Man writing code"
@@ -34,11 +34,41 @@ export default function Home() {
       </h1>
 
       <p>
-        You can check out my{' '}
-        <Link href="/blog" className="text-primary">
-          blog
-        </Link>{' '}
-        where I write about different things I am learning.
+        I am a software developer with an interest in various fields including
+        web development to cloud computing and Linux. I kicked off my career
+        with two internships, one developing solutions using an ERP system, and
+        the other working as a frontend developer with React and Redux.
+      </p>
+
+      <p>
+        I then moved to working on the most popular marketplace in Saudi Arabia{' '}
+        <a href="https://haraj.com.sa" target="_blank">
+          Haraj platform
+        </a>{' '}
+        where I worked on the web app using Next.js and TypeScript. I refactored
+        the legacy codebase from React, Redux, and JavaScript to Next.js and
+        TypeScript, along with working on many exciting features.
+      </p>
+
+      <p>
+        You can find me on{' '}
+        <a
+          href="https://linkedin.com/in/waleed-alfaifi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>{' '}
+        and on{' '}
+        <a
+          href="https://github.com/waleed-alfaifi"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        . You can also check out my <Link href="/blog">blog</Link> where I write
+        about different things I am learning.
       </p>
     </div>
   )
