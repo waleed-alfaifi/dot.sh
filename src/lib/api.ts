@@ -16,7 +16,7 @@ export interface Post {
   date: string
   excerpt: string
   html: string
-  unpublished?: boolean
+  draft?: boolean
 }
 
 const POSTS_DIR_NAME = 'public/blog'
@@ -105,7 +105,7 @@ export async function getPost(dirName: string): Promise<Post> {
   const { data, content } = matter(
     await fs.promises.readFile(markdownFile, 'utf8')
   )
-  const { title, excerpt, unpublished } = data
+  const { title, excerpt, draft } = data
 
   // get html
   const parser = getParser(dirName)
@@ -118,11 +118,11 @@ export async function getPost(dirName: string): Promise<Post> {
     date,
     excerpt,
     html,
-    unpublished,
+    draft,
   }
 }
 
-const includeUnpublishedPostsInDevEnv = process.env.NODE_ENV === 'development'
+const includeDraftPostsInDevEnv = process.env.NODE_ENV === 'development'
 
 export async function getAllPosts(): Promise<Post[]> {
   const dirs = await fs.promises.readdir(POSTS_DIR_NAME)
@@ -130,6 +130,6 @@ export async function getAllPosts(): Promise<Post[]> {
   const posts = await Promise.all(all)
 
   return posts
-    .filter((post) => !post.unpublished || includeUnpublishedPostsInDevEnv)
+    .filter((post) => !post.draft || includeDraftPostsInDevEnv)
     .sort((p1, p2) => compareDesc(new Date(p1.date), new Date(p2.date)))
 }

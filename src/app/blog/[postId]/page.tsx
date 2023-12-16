@@ -51,6 +51,7 @@ export async function generateStaticParams(): Promise<PageProps['params'][]> {
 
 const PostPage = async ({ params: { postId } }: PageProps) => {
   const post = await getPost(postId)
+  const isDraft = Boolean(post.draft)
 
   return (
     <article className="flex flex-col gap-3">
@@ -77,6 +78,12 @@ const PostPage = async ({ params: { postId } }: PageProps) => {
         <blockquote className="font-medium italic my-5 pl-2 border-l-4 border-primary">
           &quot;{post.excerpt}&quot;
         </blockquote>
+
+        {isDraft && (
+          <span className="text-xs bg-orange-300 px-3 py-1.5 rounded text-gray-800">
+            Draft
+          </span>
+        )}
       </header>
 
       <div

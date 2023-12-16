@@ -48,9 +48,9 @@ const Blog = async () => {
                   })}
                 </p>
 
-                {post.unpublished && (
+                {post.draft && (
                   <div className="absolute bottom-3 left-4 mr-auto text-xs bg-orange-300 px-3 py-1.5 rounded text-gray-800">
-                    Unpublished
+                    Draft
                   </div>
                 )}
               </Link>

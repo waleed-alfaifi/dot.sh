@@ -41,13 +41,14 @@ export default function Home() {
       </p>
 
       <p>
-        I then moved to working on the most popular marketplace in Saudi Arabia{' '}
+        I then moved to working on the most popular online marketplace in Saudi
+        Arabia,{' '}
         <a href="https://haraj.com.sa" target="_blank">
           Haraj platform
-        </a>{' '}
-        where I worked on the web app using Next.js and TypeScript. I refactored
-        the legacy codebase from React, Redux, and JavaScript to Next.js and
-        TypeScript, along with working on many exciting features.
+        </a>
+        , where I developed the web app using Next.js and TypeScript. I
+        refactored the legacy codebase from React, Redux, and JavaScript to
+        Next.js and TypeScript, along with working on many exciting features.
       </p>
 
       <p>

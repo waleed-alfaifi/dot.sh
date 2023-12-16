@@ -12,7 +12,7 @@ const getRawText = (content: string) => {
   // extract html tags from content
   content = content.replace(/(<([^>]+)>)/gi, '')
   // extract dots, commas, and other punctuation marks from content
-  content = content.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '')
+  content = content.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()"']/g, '')
   // remove trailing spaces from content
   content = content.trim()
 
@@ -22,10 +22,11 @@ const getRawText = (content: string) => {
 if (process.env.NODE_ENV === 'development') {
   WordsCounter = function WordsCounter({ content }: Props) {
     const raw = getRawText(content)
+    const words = raw.length > 0 ? raw.split(/\s+/) : []
 
     return (
       <div className="fixed flex items-center justify-center bottom-4 right-4 bg-gray-200 text-gray-600 border-gray-800 border rounded-full p-3 w-12 h-12">
-        {raw.split(/\s+/).length}
+        {words.length}
       </div>
     )
   }
